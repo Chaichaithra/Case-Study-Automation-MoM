@@ -1,0 +1,86 @@
+Meeting Recorder Naming Conventions
+
+The goal of the naming conventions is to have consistent, short,
+and easy to use names for people, microphones, channels, etc. Each
+field is fixed length, so sorting and listing is easy. Finally, the
+convention is easily extended so that we or others can add data to the
+corpus.
+
+Meeting IDs
+
+An individual meeting (also called a session) is labeled with an
+alphanumeric tag. For example, "Bmr002". The tag consists of three
+fields. The first field must be alphabetic and all uppercase, and
+should be one letter. It represents the location of the recording. We
+reserve "B" for recordings at ICSI (Berkeley).
+
+The second field must be alphabetic and all lowercase, and should have
+two letters. It represents the meeting type. The following tags are
+currently assigned:
+
+Tag	Meeting Type
+--------------------------------------------------------
+db	Database issues meeting
+ed	Even Deeper Understanding weekly meeting
+mr	Meeting Recorder weekly meeting
+ns	Network Services and Applications group meeting
+ro	Robustness weekly meeting
+sr	SRI collaboration meeting
+tr	Meeting Recorder transcriber's meeting
+uw	UW collaboration meeting
+
+The final field must be numeric, consisting of three digits (e.g. "004").
+
+Speaker IDs
+
+Speaker tags consist of "m", "f", "u", or "x", for male, female,
+unknown, and computer-generated respectively, followed by "e" for
+native English speaker or "n" for non-native English speaker, followed
+by three numbers. The numbers should be unique across all speakers
+(e.g. there is only one person with a speaker ID ending in 003). For
+example, "fn002" and "me005" are both legal speaker IDs.
+
+We have developed an XML database (icsi1.spk in the doc
+directory) containing speaker information, education level,
+language, age, etc. For details on the information we collect,
+see the comments in icsi1.spk and the online speaker form:
+http://www.icsi.berkeley.edu/Speech/mr/speakerform.html
+
+Mic IDs
+
+A microphone ID represents the type of microphone. It is separate from
+the transmission ID, which represents the method by which the signal
+gets to the recording equipment. A microphone ID consists of a letter
+and a number. The microphone IDs used at ICSI are:
+
+Tag     Description
+--------------------------------------------------------------
+s1	Sony headset mic ECM-310BMP
+s2	Sony handheld mic WRT-807A
+c1	Crown headset mic CM 311 A/E
+l1	Sony lapel (lavalier) ECM-77BMP
+p1	Plantronics monaural headset mic (part number unknown)
+a1	Andrea monaural headset mic NC-50
+u1	Unknown monaural headset mic
+u2	Unknown earplug mic
+c2	Crown PZM desktop microphone
+u3	Unknown microphone in mockup PDA
+
+Transmission IDs
+
+The transmission ID represents the method by which the microphone is
+connected to the recording equipment. It is a letter followed by a
+number. The transmission IDs used at ICSI are:
+
+Tag	Description
+----------------------------------------
+j1	Wired jack (via jimlet through jimbox)
+w1	Wireless Sony transmitter/receivers (Sony MB-806A modular
+	base, WRU-806A/64 UHF synthesized tuner modules, WRT-805A
+	bodypack transmitter) 
+w2	Wireless Sony transmitter/receiver integrated into unit
+	(e.g. Sony handset with integrated transmitter) 
+u1	Unknown wired type (e.g. PZMs)
+
+
+Questions or comments to: mrcontact@icsi.berkeley.edu

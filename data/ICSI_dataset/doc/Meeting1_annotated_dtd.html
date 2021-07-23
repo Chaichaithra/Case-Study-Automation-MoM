@@ -1,0 +1,369 @@
+<html>
+<head>
+<title>Annotated DTD for ICSI Meeting Corpus Transcripts</title>
+</head>
+<body>
+<h1>Annotated DTD for ICSI Meeting Corpus Transcripts</h1>
+
+<p>The ".mrt" files contain both the transcript of the meeting and
+certain meta data. This file describes the format. It includes
+examples for most entries.
+
+<p>More information is available at
+<a href="http://www.icsi.berkeley.edu/Speech/mr">http://www.icsi.berkeley.edu/Speech/mr</a>.
+
+<p>For questions or comments, email to <a href="mailto:mrcontact@icsi.berkeley.edu">mrcontact@icsi.berkeley.edu</a>.
+
+<p>
+<hr>
+<pre>
+&lt;!ELEMENT Meeting  (Preamble,Transcript)&gt;
+&lt;!ATTLIST Meeting  Session CDATA #REQUIRED
+                   DateTimeStamp CDATA #REQUIRED
+                   Version CDATA #IMPLIED
+                   VersionDate CDATA #IMPLIED&gt;
+</pre>
+<hr>
+<p>
+<p>Example: 
+
+<p>&lt;Meeting Session="Bmr012" DateTimeStamp="2001-02-01-1500" Version="1" VersionDate="Dec 11 2002"&gt;
+
+<p>The Session tag specifies the location (B for the ICSI meeting
+room in Berkeley), the meeting type (mr for meeting recorder
+meeting), and a unique 3 digit number. For a complete description of
+naming conventions, please see naming.txt or naming.html in the doc
+directory. 
+
+<p>The DateTimeStamp is the start time and date of the meeting. The
+format is yyyy-mm-dd-hhmm, where hh is a 24 hour time.
+
+<p>The Version and VersionDate indicate the version of the
+transcript.
+
+<p>
+<hr>
+<pre>
+&lt;!ELEMENT Preamble (Notes|Participants|Channels)*&gt;
+</pre>
+<hr>
+<p>
+<p>The Preamble contains meta data about the participants, the
+channels, and free-form notes about the meeting.
+
+<hr>
+<pre>
+&lt;!ELEMENT Notes    (#PCDATA)&gt;
+</pre>
+<hr>
+<p>
+<p>The Notes contain free-form notes. Often, it will contain information
+about problems with the meeting (e.g. dead batteries), participant
+information (e.g. mn017 left early), and tasks in the meeting
+(e.g. simultaneous digits).
+
+<p>The names of participants have been replaced with their speaker IDs in
+the Notes section.
+
+<hr>
+<pre>
+&lt;!ELEMENT Participants (Participant)*&gt;
+&lt;!ATTLIST Participants DB CDATA #IMPLIED&gt;
+</pre>
+<hr>
+<p>
+<p>Information about the Participants of the meeting. By "Participant",
+we simply mean any person who spoke during the meeting. The DB tag
+indicates the speaker database in which is stored more information
+about the participants.
+
+<hr>
+<pre>
+&lt;!ELEMENT Participant EMPTY&gt;
+&lt;!ATTLIST Participant  Name ID  #REQUIRED
+                       Channel IDREF #IMPLIED
+                       Seat CDATA #IMPLIED&gt;
+</pre>
+<hr>
+<p>
+<p>Examples:
+
+<p>      &lt;Participant Name="me018" Channel="chan0" Seat="9"/&gt;<br>
+      &lt;Participant Name="mn005" Channel="chanB"/&gt;<br>
+      &lt;Participant Name="mn014"/&gt;<br>
+
+<p>The Name is the unique user tag. See naming.txt or naming.html
+in the doc directory for details on the naming convention, and the
+speaker database (icsi1.spk) for additional information about each
+speaker.
+
+<p>The Channel is a unique tag indicating the primary near-field channel
+on which the participant can be heard (see below). If the participant
+did not use a near-field microphone, then the Channel tag will be
+absent.
+
+<p>The Seat indicates in which seat the participant started the
+meeting. The seats are numbered clockwise starting at the door (see
+seatingchart.txt in the doc directory). We only began recording seat
+location about half way through the collection process, so many
+meetings do not have Seat tags.
+
+<hr>
+<pre>
+&lt;!ELEMENT Channels (Channel)*&gt;
+&lt;!ELEMENT Channel EMPTY&gt;
+&lt;!ATTLIST Channel Name ID #REQUIRED
+                  Mic CDATA #IMPLIED
+                  Transmission CDATA #IMPLIED
+                  Gain CDATA #IMPLIED
+                  AudioFile CDATA #IMPLIED&gt;
+</pre>
+<hr>
+<p>
+<p>Example:
+
+<p>      &lt;Channel Name="chan0" Mic="c1" Transmission="w1" Gain="9" AudioFile="chan0.sph"/&gt;<br>
+      &lt;Channel Name="chanE" Mic="c2" Transmission="u1" Gain="9" AudioFile="chanE.sph"/&gt;
+
+<p>The Channel contains information about the microphones. The
+Name is a unique identifier for the channel. The Mic is an
+identifier for the type of microphone (e.g. c1 is a Crown Headset
+Microphone, c2 is a Crown PZM desktop microphone). Transmission
+indicates how the microphone is connected to the recording system
+(e.g. w1 is a wireless Sony system, j1 is a wired jack). See
+naming.txt or naming.html for details.
+
+<p>The Gain is a software recording level setting. Note that some early
+meetings did not indicate the gain setting. In these cases, a default
+gain (which is probably incorrect) is listed in this tag, and
+mention is made in the Notes section.
+
+<p>Finally, the AudioFile contains the file name in which the data is
+stored. For the ICSI meeting corpus, the files are in NIST
+Sphere/audio format and have been compressed with the "shorten"
+program.
+
+<hr>
+<pre>
+&lt;!ELEMENT Transcript (Segment)*&gt;
+&lt;!ATTLIST Transcript StartTime CDATA #IMPLIED
+                     EndTime CDATA #IMPLIED&gt;
+
+&lt;!ELEMENT Segment (#PCDATA |
+                   Emphasis |
+                   Pronounce | 
+                   Foreign | 
+                   Pause |
+                   Comment |
+                   VocalSound |
+                   NonVocalSound |
+                   Uncertain)*&gt;
+&lt;!ATTLIST Segment StartTime CDATA #REQUIRED
+                  EndTime CDATA #REQUIRED
+                  Participant IDREFS #IMPLIED
+                  Channel IDREFS #IMPLIED
+                  CloseMic (true | false) 'true'
+                  DigitTask (true | false) 'false'&gt;
+</pre>
+<hr>
+<p> Example:
+
+<p>    &lt;Segment StartTime="331.150" EndTime="332.339" Participant="me011"&gt;<br>
+      &nbsp;&nbsp;On &lt;Emphasis&gt; which &lt;/Emphasis&gt; tool?<br>
+    &lt;/Segment&gt;
+
+<p>Each Segment must identify a start time and an end time measured in
+seconds from the start of the audio file. If the segment represents
+sounds from a particular participant (e.g. speech), then the Segment
+must include a Participant attribute. The value of the Participant
+attribute must match the Name attribute from the Participant tag (see
+above). The Channel defaults to the Channel specified in the
+Participant tag. In unusual cases, the Channel may specify a channel
+different from the default channel (e.g. a participant temporarily
+uses another participant's microphone).
+
+<p>If the participant spoke into a near-field microphone, then the
+CloseMic attribute will be true (the default). Otherwise, the CloseMic
+attribute will be false.
+
+<p>During most meetings, we ask the participants to read a set of
+connected digits. The DigitTask attribute should be true during these
+segments.
+
+<p>Note on acronyms: We did not include a separate acronym
+tag. Instead, if the acronym is pronounced as a word, then the acronym
+is listed with no special notation. For example, NASA will simply
+appear as "NASA".
+
+<p>If the letters of the acronym are spoken, such as with "IBM", this
+is denoted by underscores in the transcription. For example, "IBM"
+appears in the corpus as "I_B_M".
+
+<p>Mixed cases also appear. For example, "x ray" is transcribed
+"X_ray".
+
+<p>See the section on &lt;Emphasis&gt; below for important information
+on acronyms with emphasis.
+<p>
+<hr>
+<pre>
+&lt;!ELEMENT Foreign (#PCDATA |
+                    Emphasis |
+                    Uncertain )*&gt;
+&lt;!ATTLIST Foreign Language CDATA #REQUIRED
+                   Description CDATA #IMPLIED&gt;
+</pre>
+<hr>
+<p>Example:
+<p>&lt;Foreign Language="de"&gt; Nein. &lt;/Foreign&gt;
+
+<p>Parts of a segment that are spoken in a language other than English
+are identified with the Foreign tag. The attribute Language is
+required, and must be the two letter international language symbol for
+the language being used.
+
+<ul>
+<li>de - German
+<li>it - Italian
+<li>no - Norwegian
+<li>fr - French
+<li>es - Spanish
+<li>la - Latin
+</ul>
+
+<p>The Description attribute is optional, but frequently contains the
+translation.
+
+<hr>
+<pre>
+&lt;!ELEMENT Emphasis (#PCDATA |
+                    Pronounce |
+                    Uncertain |
+                    VocalSound)*&gt;
+</pre>
+<hr>
+<p>
+<p>
+<p>When a syllable in a word is emphasized, the word may be marked with
+the Emphasis tag. 
+
+<p>When Emphasis is used within an acronym, the coding is a
+combination of underscores and the Emphasis tags. For example,
+"I_&lt;Emphasis&gt; B &lt;/Emphasis&gt;_M" indicates that the B is
+emphasized.
+
+<p>When the emphasis tag is in the leading position, it may indicate that
+any syllable is emphasized. For example:
+
+<p>I_&lt;Emphasis&gt; B &lt;/Emphasis&gt;_M &nbsp;&nbsp;&nbsp;&nbsp; The B is emphasized<br>
+&lt;Emphasis&gt; I_B_M &lt;/Emphasis&gt; &nbsp;&nbsp;&nbsp;&nbsp; Any syllable may be emphasized
+<p>
+<hr>
+<pre>
+&lt;!ELEMENT Pronounce (#PCDATA)&gt;
+&lt;!ATTLIST Pronounce Pronunciation CDATA #IMPLIED&gt;
+</pre>
+<hr>
+<p>
+<p>
+<p>Example:
+
+<p>One of &lt;Pronounce Pronunciation="&amp;quot;em&amp;quot;"&gt; them  &lt;/Pronounce&gt;<br>
+linguistic factors &lt;Pronounce Pronunciation="shortened"&gt; too.  &lt;/Pronounce&gt;<br>
+and &lt;Pronounce&gt; partially  &lt;/Pronounce&gt;
+
+<p>When an obviously non-canonical pronunciation is used, it may be
+marked with the Pronounce tag. The Pronunciation attribute, if
+included, indicates how the word or phrase was actually pronounced,
+either by specifying the pronunciation (as in the first example) or by
+describing its properties (as in the second example). The contained
+text shows the canonical pronunciation. If the Pronunciation attribute is
+missing, it indicates that the word was pronounced in a non-canonical
+way.
+
+<hr>
+<pre>
+&lt;!ELEMENT Uncertain (#PCDATA |
+                     Uncertain | 
+                     Pause |
+                     Pronounce |
+                     Emphasis)*&gt;
+&lt;!ATTLIST Uncertain NumSyllables CDATA #IMPLIED&gt;
+</pre>
+<hr>
+<p>
+<p>
+<p>Examples:
+
+<p>&lt;Uncertain&gt; I mean &lt;/Uncertain&gt; these are long meetings<br>
+&lt;Uncertain NumSyllables="2"&gt; @@ &lt;/Uncertain&gt; We should
+
+<p>
+<p>In cases where the transcriber was uncertain of the transcript, the
+Uncertain tag may be used. The contained text is the transcriber's best
+guess, or may be the special symbol @@ to mean unintelligible. If the
+NumSyllables attribute is given, it is the transcriber's best guess at
+the number of syllables in the Uncertain section.
+
+<hr>
+<pre>
+&lt;!ELEMENT Pause EMPTY&gt;
+
+&lt;!ELEMENT Comment EMPTY&gt;
+&lt;!ATTLIST Comment Description CDATA #REQUIRED&gt;
+</pre>
+<hr>
+<p>
+<p>
+<p>Examples:
+
+<p>and so forth. &lt;Comment Description="rising intonation"/&gt;<br>
+On - on Friday. &lt;Comment Description="restart at overlap"/&gt;<br>
+Johno? &lt;Comment Description="whispered"/&gt;<br>
+is that - &lt;Comment Description="while laughing"/&gt;<br>
+&lt;Comment Description="very long pause, almost 6 seconds"/&gt;<br>
+
+<p>Miscellaneous comments from transcribers, usually about the preceding
+utterance.
+
+<p>
+<hr>
+<pre>
+&lt;!ELEMENT VocalSound EMPTY&gt;
+&lt;!ATTLIST VocalSound Description CDATA #IMPLIED&gt;
+</pre>
+<hr>
+<p>
+<p>
+<p>Examples:
+
+<p>&lt;VocalSound Description="laugh"/&gt;<br>
+&lt;VocalSound Description="breath"/&gt;<br>
+&lt;VocalSound Description="clears throat"/&gt;<br>
+&lt;VocalSound Description="mouth"/&gt;<br>
+&lt;VocalSound Description="sniff"/&gt;<br>
+
+<p>A non-lexical vocalization related to a speaker.
+
+<p>
+<hr>
+<pre>
+&lt;!ELEMENT NonVocalSound EMPTY&gt;
+&lt;!ATTLIST NonVocalSound Description CDATA #IMPLIED&gt;
+</pre>
+<hr>
+<p>
+<p>Examples:
+<p>
+<p>&lt;NonVocalSound Description="mike noise"/<br>
+&lt;NonVocalSound Description="pages shuffling"/&gt;<br>
+&lt;NonVocalSound Description="writing on whiteboard"/&gt;<br>
+&lt;NonVocalSound Description="door opens"/&gt;<br>
+&lt;NonVocalSound Description="computer beep"/&gt;<br>
+
+<p>A non-vocalized noise.
+
+<p>
+<hr>
+</body>
+</html>

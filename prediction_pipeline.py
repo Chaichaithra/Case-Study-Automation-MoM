@@ -116,7 +116,8 @@ for key, value1, value2 in zip(list(df_labels['cluster_number']),
     cluster_label_desc_map[key] = [ast.literal_eval(value1), ast.literal_eval(value2)]
 
 #print(df_entities)
-
+dict = {}
+t=[]
 def get_predicted_text():
     for sentence, cluster_id, prediction in zip(list(df_entities['sentence']), 
                                             list(df_entities['predicted_cluster_label']),
@@ -124,14 +125,17 @@ def get_predicted_text():
                                            ):
         print ("***************************************************************************************")
         print ("Detected Sentence:", sentence)
-        print ("Predicted Entity Group:", prediction)
+        dict[sentence]=prediction
         #dict["Dectected Sentence{0}".sentence] = prediction
     
     if prediction != 'Not-important':
         print ("Top Entities:", [x for x in cluster_label_desc_map[cluster_id][0] if x in sentence])
         print ("Most frequent phrases:", [x for x in cluster_label_desc_map[cluster_id][1] if x in sentence])
     
-    return
+    t = list(zip(dict.keys(), dict.values()))
+    #print(t)    
+    return t
 
 if __name__=='__main__':
     get_predicted_text()    
+    

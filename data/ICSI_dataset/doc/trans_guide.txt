@@ -1,0 +1,764 @@
+Note: This document describes the transcription methods and
+conventions as employed by the Meeting Transcription team. Because
+the transcripts were later reformatted to conform to the new MRT
+specification, an ADDENDUM is provided at the end of the document,
+detailing how the markings described here were modified. Consult the
+ADDENDUM for the forms the user should expect to see in the MRT files.
+We intend to provide tools to convert between the two conventions.
+
+======================================================================
+
+       The ICSI Meetings Corpus: Transcription Methods
+
+                      Jane Edwards, ICSI
+
+  ----------------------------------------------------------------
+
+0. Overview.
+
+The Meetings Corpus transcripts are word-level transcripts,
+time-synchronized to digitized audio recordings.
+
+The meetings were recorded with close-talking and far-field
+microphones. The transcripts were based mostly on the close-talking
+microphones, either separately or blended together in a so-called
+"mixed" channel.
+
+When listened to separately, the close-talking microphones enabled
+detection of quiet events, and disentangling of utterances during
+overlaps. The mixture of close-talking microphones made it possible to
+to follow the flow of the conversation and hear utterances in context,
+with much better audio quality than would have been possible from
+far-field microphones. Far-field microphones were used either when a
+speaker was not wearing a microphone (e.g., during meeting set-up), or
+when a microphone malfunctioned.
+
+Transcripts were prepared by means of the "Channeltrans" interface
+(http://www.icsi.berkeley.edu/Speech/mr/channeltrans.html).
+Channeltrans is an extension of the "Transcriber" interface (Barras,
+Geoffrois, Wu, and Liberman, 2000), modified by David Gelbart and Dan
+Ellis to accommodate multiple speakers, and overlapping speech.
+
+Both Transcriber and Channeltrans preserve events and time bins
+in which they occurred, and both of them do so in XML format.
+Channeltrans differs from Transcriber in that it preserves the channel
+number in addition to the time and event. Whereas Transcriber has only
+one display ribbon for speaker utterances, Channeltrans affords as
+many display ribbons as there are speakers. Furthermore, Channeltrans
+allows the time bins on each ribbon to be totally independent of
+those on all other ribbons. Both properties -- multiple ribbons and
+independent time segmentation -- were essential for the Meetings
+Corpus data, due to the large number of participants and great amount
+of overlapping speech in these meetings.
+
+The basic strategy of the transcript was to view each ribbon as
+capturing the actions of a particular meeting participant, heard over
+the close-talking microphone which he or she was wearing. The person
+wearing a particular microphone is called the "dominant" speaker on
+that channel. In cases of crosstalk, other speakers may be heard on
+the same channel, but only the events produced by the dominant speaker
+are transcribed on the display ribbon corresponding to that channel.
+Expressed another way, no event is transcribed more than once, or
+attributed to any channel other than the channel on which the speaker
+is the dominant speaker.
+
+The most basic unit of analysis in these transcripts is an event, the
+time bin containing it, and the person who produced it. The time bins
+are only practical units rather than theory-relevant units. The goal
+was simply to have units of manageable size with no truncated words.
+Thus, an utterance can extend into subsequent time bins, so long as
+there are clean breaks between them.
+
+To speed the transcription process, a speech-nonspeech detector was
+used to provide a preliminary segmentation of the data into time
+bins. Although the time bin boundaries were not always accurate, it
+was still more efficient than having transcribers add all boundaries
+themselves. This process is explained in greater detail in section 3
+below.
+
+After the transcripts were completed, they were checked, first by
+other transcribers, and then by one of two senior researchers. The
+details of the checking procedures are described in section 4 below.
+
+After the transcripts were completed and checked, some of the
+surface labels below were converted by scripts into XML tags (see
+Addendum). It's important to note that this is a difference only of
+the surface-level graphemes; not the distinctions which are encoded
+in the transcripts. This difference has been expressed elsewhere
+as one of "markup" versus content (see Edwards, 1995, p. 20). The
+distinctions described below are the meanings captured in the Meetings
+Corpus, regardless of which surface graphemes are used to display them
+in the markup.
+
+This document describes the specific content distinctions which were
+encoded in the transcripts. Section 1 describes the transcription
+conventions which were used for all interactional parts of the
+meetings (i.e., all but the Digits task). Section 2 indicates how
+these conventions were applied to the Digits task. Section 3 presents
+the details of implementing the transcription conventions, esp. with
+reference to Channeltrans and the speech-nonspeech presegmenter.
+Finally, Section 4 describes the steps and processes used in checking
+the transcripts before considering the transcription encoding phase
+complete.
+
+
+1. Transcription Conventions (except for the Digits task, which is
+discussed in section 2)
+
+The transcription conventions used in this project were shaped by two
+sets of factors. The first set was the intended audience: primarily
+speech recognition research, and secondarily linguistic and discourse
+research. The former audience requires matching of word forms against
+lexical entries. The latter requires preserving communicative events.
+
+The second set of factors were practical considerations: speed
+of data entry, robustness against human error, and computational
+utility. These interests are shared by all well-designed transcription
+systems. Some of the strategies used include: minimalism (using as
+few separate symbols and as few interpretive decisions as possible),
+use of familiar literary conventions where possible (e.g., a dash for
+incompletion), use of conventions which are reasonably transparent
+through other motivations where that's not possible, etc. (See
+Edwards, 2002 for a more comprehensive list).
+
+The focus of the transcripts was on capturing the flow of audible
+events, especially the words which were spoken, and who spoke them.
+
+The basic unit of analysis was an event, the time bin in which it was
+located, and where relevant or possible, which participant produced
+it.
+
+There are five types of "events" in these transcripts:
+1) Words 
+2) Utterances
+3) Vocalizations which are not words - e.g., laughs, coughs, breaths
+4) Nonvocalized sounds - e.g., door slams, microphone noises, chair squeaks
+5) Silence
+
+With words, utterances and other vocalizations, it was almost always
+possible to determine the relevant actor by comparing loudness across
+different close-talking microphones, or by noticing distinctive
+characteristics of voice or accent.
+
+Non-vocalized sounds, such as doors slamming or chairs squeaking, were
+attributed to individuals in the transcripts when this was obvious
+from context or from comments from participants (e.g., when someone's
+microphone suddenly becomes active, or when someone teases the person
+for being late). Where it was not clear who produced them, the noises
+were simply noted as occurring, without attribution.
+
+Silence was the absence of events of the other four types. Some
+speakers were silent for long stretches during a meeting. This type of
+silence was routinely encoded.
+
+When a silence occurred within an utterance it was sometimes encoded
+but not exhaustively so, and similarly, for when breath occurred
+within an utterance.
+
+In addition to the five event types, the transcripts contain
+additional clarifying information or "metacomments," typically
+expressed inside curly brackets with a "QUAL" label inside the opening
+bracket. These comments include such things as contextual notes, and
+observations concerning acoustic or discourse features.
+
+The transcripts also contain some types of information which can
+be derived indirectly from the representation rather than being
+explicitly encoded. A primary example of this is overlapping events,
+which can be defined with reference to time tags on two different
+speaker channels.
+
+Sections 1.1 through 1.5 provide details of the five event types.
+Section 1.6 explains the encoding of metacomments. Section 1.7
+discusses the relative exhaustiveness of encoding of the various types
+of distinctions in the discourse section of the meetings.
+
+1.1. Words
+
+All word-level transcription followed the same rules:
+- encode words in standard orthography,
+- indicate uncertainty of transcription where it exists.
+
+Under no circumstances was "word salad" allowed, i.e., transcribing a
+string of words which sounds somewhat like the speaker's utterance,
+but which was most certainly wrong or made no sense in context.
+
+Where uncertainty arose, parentheses were used, and one of the
+following encodings was used inside the parentheses:
+ - If the transcriber was reasonably sure of a word or phrase (and
+   it made sense in context), the uncertain word or phrase was 
+   enclosed in parentheses:  (word or phrase) 
+ - If the transcriber was not sure of a word or phrase, but was 
+   fairly certain that it was n syllables long, the number of
+   syllables was followed by an "x": (nx) 
+ - If the stretch of speech was totally undecipherable and
+   contained an indeterminate number of syllables:  (??) 
+
+There are several types of "words" in the transcripts:
+a. Standard word forms found in the dictionary.
+   These are encoded in standard orthography. Hyphens are used to     
+   bind together the parts of a lexical compound, as in standard      
+   orthography. Hyphens are also used to bind together components of  
+   some frequently occurring technical terms (e.g., speech-nonspeech  
+   detector).                                                         
+b. Truncated words.  These are words whose articulation is stopped by
+   the speaker before they are completed.  This is encoded by means of
+   a hyphen appended to the end of whatever was articulated.
+   For example:
+	th-
+c. Numbers, decimals and percentages.  These are spelled out in standard
+   orthography (e.g., "five point two", "twenty-five").
+d. Pronounceable acronyms (e.g., "UNESCO", "ChiLDES") are encoded
+   with the same capitalization patterns as are usually used for them
+   in writing.
+e. Spoken letters are encoded as capital letters followed by underscores (_).
+   When they occur individually there is an underscore after each spoken 
+   letter.
+   - discussion points:
+     "So the news for me is A_, my forthcoming travel plans in two weeks."
+   - variable names: "the log of X_ plus N_"
+     "That might, you know, give us additional input to belief A_ versus B_."
+   When they occur in clusters, there is an underscore (and no space) after 
+   each letter except the last one:
+   - acronyms pronounced as a string of letters:  "I_C_S_I"
+     (Acronyms which are pronounced as words rather than strings of
+     letters are encoded with no underscores, e.g., "ICSI" when pronounced
+     like "icksy".)
+   - spellings:  "His name is Hudson, H_U_D_S_O_N."
+   When they are a part of a technical term, there is always an
+   underscore after the letter. The separate parts of the term are
+   bound together by the underscore alone or by an underscore plus a
+   hyphen or by a hyphen, depending on whether the letter precedes or
+   follows the non-letter part of the term, or, when there are two
+   letters, depending on what would seem the most easily readable
+   encoding:
+   - technical terms:  
+     - letter followed by non-letter segment:  
+	"This is a plot of C_zero, the energy."
+     - non-letter segment followed by letter: 
+	"What you're saying is we have a Where-X_ question."
+     - two letters and a non-letter segment: "M_-three-L_ enhancement"
+   In this corpus, underscores occur only in the context of spoken letters.
+f. Word forms typical of spoken discourse, which may be absent from
+   a dictionary (e.g., reduced forms such as "gonna" and "cuz",
+   backchannels such as "mm-hmm", interjections such as "oops!"),
+   but which often have a conventionalized spelling in literature.
+   These are encoded using the shortest list of forms which capture
+   meaning differences but avoid needless proliferation. (For example,
+   "uh-huh" is always encoded as "uh-huh"; if it is lengthened, the
+   lengthening is treated as being an embellishment and is handled by
+   a comment immediately following the word or utterance.)
+g. "Vocal gestures".  These are less word-like vocalizations which, however, 
+   are communicative (rather than being reflexive behavior). For
+   example, "pppt!" which is sometimes used to signal an easy task,
+   or "hhh" which stands for a vocalized outbreath of frustration or
+   difficulty.
+h. Departures from canonical pronunciation: the "PRN" tag.  This category
+   was motivated by the goal of advancing speech recognition research,
+   to indicate pronunciations which are noticeably different from
+   the pronunciation variants which would normally be expected of
+   the speaker who uttered it. PRN items are recognizable by humans,
+   but are perceived by human transcribers as being beyond the range
+   of normal pronunciation variation, such that non-humans could be
+   expected to find them more difficult to recognize than usual.
+
+   Items which are tagged PRNs include:  
+   - words which have been extremely lengthened (i.e., seeming subjectively 
+     to be probably several standard deviations beyond normal length for
+     that speaker) 
+   - words which contain rare acoustic artifacts which might affect the
+     waveforms (e.g., an initial vocal squeak, or a crack in the voice)
+   - non-words which arise from speech errors of some types but which
+     sound prosodically complete
+
+   Items which are NOT tagged as PRNs:
+   - prosodically incomplete words/nonwords (already handled via the 
+     truncation convention above, using the end-hyphen)
+   - words which are tinged by a non-native speaker's mother tongue
+     (since these pronunciations would be part of an accurate model
+     of that person's variety of English).  That is, if the person is
+     a native Spanish speaker and says what sounds like "Espain" instead 
+     of "Spain", the word is simply transcribed as "Spain" without special
+     marking.
+
+   The following is an example of PRN marking:
+        'O_K. {PRN "mm-kay"}
+   PRN marking has these parts:
+   - an apostrophe (') pre-pended to the beginning of the non-canonical 
+     stretch (which may be one or more words in length),
+   - the word(s) in the non-canonical stretch, spelled in standard 
+     orthography,
+        (O_K).
+   - a PRN tag after the stretch, and
+   - an optional rendering of the speaker's pronunciation, 
+     or a description of how it is different from canonical pronunciation
+        (in this example, "mm-kay").
+   The following illustrate some other types of PRN marking:
+        'folks. {PRN "folksss"}
+        'She {PRN lengthened}
+	'this could {PRN "thisss kid"}
+   The description field is usually empty for speech errors because
+   they are accidental productions which should not normally be viewed
+   as intended renderings of a word in the language (and hence would
+   not be normally added to a model).
+
+   Lengthening (and other embellishments) which are within the normal
+   range of pronunciation variation are normally noted in QUAL comments 
+   (discussed later in this document) instead of PRN comments.
+	
+i. Foreign words and phrases.
+   These are encoded in a manner similar to non-canonical
+   pronunciations (section h), except with a language abbreviation
+   in place of "PRN" (e.g., GER for German). A recognizer trained
+   on English would not be expected to have them in its lexicon or
+   language model. Tagging them makes it possible to exclude them from
+   some experiments if desired.
+	'ist fertig. {GER "is finished"}
+	'oder {GER "or"}
+	'Nein! {GER}
+	'cum grano salis. {LATIN meaning "with a grain of salt"}
+ 	'en passant, {FRENCH "in passing"} 
+	'Bien sur {FRENCH meaning "of course"}
+	'pero {SPAN meaning "but"}
+	'tango de la muerte. {SPAN}
+
+1.2. Utterances
+
+A discourse consists of units of various sizes. For purposes of this
+document, "utterances" are stretches of words which begin with a
+capital letter and end with a punctuation mark and/or a comment in
+curly brackets.
+
+Punctuation marks signal two types of information:  whether an utterance is
+complete or not and what type of utterance it is:
+- Exclamations end with exclamation point (!).
+- Statements end with a period (.) unless they are intended as questions.
+- Utterances with the pragmatic force of questions end with a question mark
+  (?).  (This includes some statements spoken with rising intonation, but
+  not explanations spoken with rising intonation, in which case, the
+  rising intonation serves to elicit listener feedback, rather than to
+  signal a propositional question.)
+- Disfluencies and incomplete utterances end with a space and a hyphen unless
+  their last word is truncated, in which case they end with simply the 
+  hyphen attached to the truncated word (section 1.1.b).    
+  The following example contains only completed words:
+	I was - these meetings - I'm sure someone thought of this, but these -
+  This example has a truncated word (and thus has a hyphen appended to it):
+	It'd be nice, but - but I - I - I do- I don't wanna count on it.
+  If the utterance was clearly a question, the hyphen can be followed by
+  a space and a question mark (- ?).  For example:
+	So, uh, what was the date there? Monday or - ?
+  The "- ?" notation is used only when there is no doubt that the utterance
+  was intended by the speaker as a question (e.g., due to a combination of
+  syntactic factors, prosody, response from seeming addressee, etc.).
+  Only very few truncated utterances are marked as being truncated questions 
+  in the interests of staying close to the actual data rather than guessing
+  what the person might have intended or said if he or she had continued
+  speaking.
+
+The end-punctuation marks in this corpus were based considerably less
+on prosodic distinctions than is true of many discourse corpora.
+This approach was chosen with the intention of providing the primary
+audience (speech researchers) with the types of distinctions of
+greatest use to their research.
+
+Some prosodic information is preserved by two other mechanisms:
+- asterisk (*) for marking prosodic prominence:
+   "So it's not really - you're not really *exposed to German very much."
+- QUAL comments for describing various properties of the utterance which 
+  precedes the comment:
+   "We use a generalization of the - the SPHERE format. {QUAL rising intonation}"
+This particular utterance was a statement of clarification by the
+speaker, with rising intonation to get feedback from the listener.
+The utterance would have had a very different meaning (and been
+pragmatically bizarre in the context in which it arose) if it had been
+encoded as a syntactic question, i.e., punctuated with a question
+mark.
+
+Neither stress nor intonation is exhaustively coded in the corpus.
+They are added mainly as points of enticement for future work.
+
+Other punctuation in this corpus:
+- comma (,), used in a manner similar to written orthographic standards,
+- double quotation mark ("), used to encode any material which is being
+  quoted by the speaker.
+  The literary convention of encoding embedded quotes in single quotes
+  (') is avoided to avoid confusions with PRN items. (See section 1.1
+  above.) Instead, embedded quotations are marked by double quotation
+  marks (") as are un-embedded quotations. This can give rise to some
+  rare ambiguities of scope, where it is not clear where the embedded
+  quote ends within a quoted stretch. But there are only a handful of
+  cases in the entire corpus which have embedded quotes, so it was not
+  considered an abundant enough event to require an extra convention.
+
+It is illegal to have a space in front of the following markers:
+period, comma, exclamation point, utterance-final quotation marks.
+
+It is illegal to have a space immediately after this marker: asterisk.
+
+The ordering of punctuation marks is roughly that of standard
+orthography, with one exception: commas and periods can be placed
+outside of the final double quotation mark if it is notionally
+justified, for example, if the speaker is quoting a term within an
+utterance.
+Thus:
+	The term to use there is "temporary".
+
+Colons and semicolons are not allowed in the corpus. If an utterance
+would most naturally be rendered with a colon in written orthography,
+a comment containing the word "colon" is sometimes put immediately at
+that point in the utterance (to enable a shift in conventions later on
+if that distinction becomes important to preserve).
+
+1.3. Vocalizations other than words
+
+When the speaker is not speaking, he or she sometimes produces other
+vocal sounds, including such things as "laugh", "cough", "breath",
+etc. These are set apart from the utterance, and tagged as so-called
+"VOC" events. They are enclosed in curly brackets after an initial
+"VOC" tag.
+
+When a laugh or cough, etc. occurs *during* the articulation of a
+word, it is viewed not as a VOC, but rather as a modification of
+on-going articulation, and is instead tagged as a "QUAL" (i.e.,
+"qualification" comment) event.
+(QUALs are described in a later section, below.)
+
+There are far too many types of VOCs to discuss them all separately,
+but a couple of them warrant some comments.
+
+The VOC descriptors "laugh-breath" or "breath-laugh" were intended
+initially to signal an event which was ambiguous between a laugh
+and a breath. It has become generalized to also capture some events
+which are clearly laughs but lack voicing, such as events which are
+identifiable from quick rhythmic breathiness and context.
+
+The VOCs "inbreath" and "outbreath" are more specific than "breath"
+but these distinctions are not exhaustively encoded.
+
+If two VOC events occur in succession, they are generally mentioned in
+separate bracketed comments (to keep the list of VOCs as short
+as possible).
+
+1.4. Nonvocalized sounds 
+
+These include "door slam", "microphone noise", "chair squeaks", etc.
+They are enclosed in curly brackets after an initial "NVC" tag.
+Many of them are audible across more than one channel.
+Some of them are attributable to individual speakers but many are not.
+
+If two NVC events occur in succession, they are generally mentioned in
+separate bracketed comments (to keep the list of NVCs as short
+as possible).
+
+1.5. Silence
+
+Double periods without space between them (..) means silence. 
+
+1.6. Clarifying information
+
+There are several types of clarifying information in the corpus.
+1) punctuation (discussed in section 1.2 above)
+2) metacomments expressed in curly brackets with an explicit tag indicating
+the type of information they encode.
+
+Two types of metacomments were discussed in section 1.1 above: 
+those for non-canonical pronunciations (PRN) and those for non-English 
+expressions (GER, etc.).
+
+The main type of metacomment in the data is the QUAL comment.
+It is used for comments concerning such things as likely referent, likely
+addressee, or various possibly interesting discourse factors such as
+voice quality.  It is also used to note modifications of articulation
+(e.g., lengthening) or to capture simultaneity of events 
+("during microphone spike" or "while laughing"), and so forth.
+
+Speaker identifiers may appear in comments which indicate the intended 
+addressee for an utterance or which clarify ambiguous references or
+describe ongoing actions, but these are relatively rare.  The primary
+mechanism for attributing acts to individual participants is the XML
+"channel" tags.
+
+In the original transcripts, QUAL comments were encoded in curly brackets 
+beginning with a "QUAL" tag.
+All QUAL comments are positioned either at the point of relevance or
+immediately after the segment or unit to which they apply most clearly;
+not before it.  
+
+In the event of an interrupted utterance, the PRN precedes the space and
+hyphen, whereas the QUAL follows it.  The reason for this is a difference
+of scope for their most typical instantiations.
+That is, PRN is usually word-level in what it clarifies (and less often
+applies to phrases) whereas QUAL is usually phrase level (and less often
+applies to individual words).  
+
+The contents of a QUAL were kept as short as possible, and were kept
+to as short a list as possible by using the same wording across
+meetings as much as possible.  Thus, "again" was avoided on subsequent 
+occurrence of an event. QUALs containing multiple parts were split into 
+two adjacent comments where this would lead to a shorter total list of 
+them in the corpus (i.e., avoiding compounding in the same way as discussed 
+for VOCs and NVCs above).
+
+1.6.1. The scope of clarifying information
+
+Comments which refer to a word or utterance are placed immediately
+after the word or utterance they refer to, and in the same time bin.
+For example:
+	It's mine! All mine! {QUAL while laughing}
+The comment refers to all or part of the preceding utterance.
+In the interests of time, the exact scope was usually not specified,
+though sometimes it was:
+	which I'm not gonna have time to do in the next few 
+	days, {QUAL last 5 words spoken while laughing}
+The goal was to indicate the occurrence of something interesting
+in a time bin in the most efficient and least time-consuming way.
+
+In some cases, a comment contains background information which may be
+relevant not only to the preceding utterance but also to utterances
+which follow it. For example:
+    Speaker B: 
+	I was just gonna say maybe fifteen minutes later would help me
+	a little bit just cuz I have a class up at Dwinelle b- just
+	before this. That's why I was a little late today because -
+    Speaker A: 
+	*Wow. You did really *well. {QUAL addressee recently had knee surgery}
+    Speaker B: 
+	Thanks. {VOC laugh} Well, I took the bus for part of the way. 
+	But um, that might help me just a *little bit because then it -
+	I - you know, I'm gonna - gonna be hobbling a little slowly.
+It is often impossible to determine the point at which such a state of 
+the world becomes relevant or irrelevant to the unfolding interaction.  
+For this reason, in the present conventions, as in most discourse
+transcription conventions, it is desirable to insert comments where
+they are known to be relevant but to avoid giving an explicit end-point 
+to their relevance to the discourse, as this is ultimately unknowable,
+often even to the participants themselves.
+(See Edwards, 1993, pp.  17-18 for contrasting approaches to scope.)
+
+1.7. Exhaustiveness of the encoding
+
+It's useful to mention the priorities of transcription for this project,
+as a guide to what phenomena were most robustly and exhaustively encoded.
+
+The most robust parts of the corpus are:
+
+- "words" in the technical sense of strings of one or more characters
+  representing phonations by the speaker.  This includes all 
+  of the categories and subcategories of section 1.1.
+- speaker attribution for the words. That is, correctly attributing 
+  articulations to the person who actually uttered them rather than
+  to another speaker.
+- encoding of communicatively salient vocal (VOC) events - esp. "laugh" 
+- encoding of loud reflexive VOC events - esp. "cough", "sneeze",
+  and to a lesser degree (because these were less audible, and easier
+  to overlook) "sniff"
+- encoding of loud nonvocal (NVC) events - esp. door slams
+- encoding of certain types of QUAL comments - esp. "while laughing"
+  because it is the most common speech embellishment in the data,
+  because it is communicatively significant, and because it
+  may hinder word recognition by human and machine.
+
+Reasonably robust but somewhat less exhaustive/consistent:
+
+- events which occurred too often to be exhaustively marked within
+  the parameters of this project:  microphone spikes, breaths.
+  Some meetings contain more exhaustive encoding of breaths than others.
+  
+- events which were less audible (lower volume): some backchannels
+  or sniffs.  Many of these were overlooked entirely by the automatic
+  presegmenter and were added manually by transcribers or by
+  data checkers.  It is inevitable that some were overlooked, esp.
+  the unusual category of backchannels which were of such low volume
+  that they were not even audible to others at the meeting.
+
+- the punctuation at the ends of utterances.
+  The goal was to provide a useful and reasonably consistent set of
+  markers, and this was accomplished.  Punctuation was double-checked
+  or even triple-checked by different transcribers, but there is more
+  chance of variability in this part of the corpus than in the parts
+  noted above.  
+
+Sporadically encoded curiosities for future work:
+
+  This third category contains a variety of phenomena which caught
+  the transcribers' or data checkers' attention as interesting and
+  worth preserving, but which were not part of the main goals of
+  the project. This includes: rare events, curiosities and ideal examples 
+  of particular phenomena.   "Rare events" are such things as 
+  extremely long silence across all channels (as in Bro005):
+	{QUAL very long silence, 11 seconds}
+  Under "curiosities", there are glottal clicks, and unusually
+  high whistles produced by a talented linguist in Bsr001.  
+  Under "ideal examples" is the remarkably tight rhythmic coordination
+  of backchannels across 5 speakers at several points in Btr002.
+  These and similar things were encoded in the corpus to provide a 
+  sense of the richness of the data and a glimpse of what other types 
+  of phenomena a person might study in this corpus which go beyond
+  the scope of basic transcription.
+
+
+2. Conventions used for the Digits task
+
+The "Digits" task involved reading strings of one or more digits from 
+lines of printed scripts.  Not every meeting contained this task,
+but where it occurred, they were transcribed as follows:
+
+- Every event was transcribed: from the reading of the digit-script 
+  number through the last digit of the last digit string on that 
+  person's page, including occasional phrases such as
+  "Sorry, I'll start again." 
+
+- The "{DGTS}" tag was put at the end of every non-empty time bin.
+
+- All numbers were written as words (rather than Arabic numerals).
+
+- Each digit string was isolated to a time bin by itself (rather
+  than being split across time bins or combined with other strings)
+  to the extent this was possible to determine.
+
+- If the scripted string contained clusters of digits, commas were
+  often used to indicate the separation of the clusters of digits in 
+  that string.
+
+Occasionally utterance-final punctuation marks and initial capitalization
+were used in the transcription of the Digits task, but these should be
+regarded as being only very approximate.  The digit strings themselves are not
+syntactic units (and hence can't be categorized as "declarative", etc.).
+In addition, since they were being read and were not meaningful,
+their intonation contours are not the same as spontaneous discourse.
+
+
+3. Implementation of the corpus conventions
+
+The transcripts involved two tasks:  encoding events and the boundaries
+of the time bins which contained them.  The location of time tags was
+driven mainly by a simply practical goal of keeping the units to a
+manageable size while at the same time not truncating any words.
+
+Because the meetings were often large, it was impractical to accomplish
+this in a strictly manual way (i.e., having transcribers do all the
+segmentation into time bins).  In an hour meeting with nine
+participants, for example, it would have taken nine hours to listen to
+each channel exhaustively to find the time bins which required
+encoding.  Viewing the energy waveform for activity might seem an
+effective solution, but in fact, it was not very reliable.
+
+A highly effective approach turned out to be to apply a speech-nonspeech
+detector to the audio recordings to generate a preliminary segmentation
+into time bins to be adjusted later by human transcribers.  (For
+details see Pfau, Ellis & Stolcke, 2001).
+
+Transcribers were encouraged to correct, adjust, or add new
+segmentations as needed.  The time bins were intended simply as 
+units of a manageable size with clean breaks on either side (i.e.,
+no truncated words).  Utterances may be contained in a single time 
+bin or they might extend across several time bins.  The time bins
+were not intended as definable discourse units or prosodic units
+but simply as manageable units.
+
+The ICSI transcribers were students in liberal arts (all but one in
+linguistics).  They were chosen for perceptiveness and overall
+attentiveness to linguistic detail.  
+
+
+4. Steps and processes of checking the transcripts for word-level accuracy
+
+After a transcript was completed, it was checked for spelling errors,
+and then assigned to a different student transcriber for checking.  The
+second transcriber reviewed it in its entirety while listening to the
+audio recording.  After this was completed, the process was repeated by
+one of two senior researchers.
+
+The "read-throughs" were extremely time consuming but were invaluable
+for word-level accuracy.  In addition, they led to the detection of
+many backchannels which had been overlooked by the presegmenters and 
+the first transcriber.  
+
+More mechanical checking was also used, such as standard spell checking
+and scanning exhaustive listings of forms for words which seem implausible 
+(and then checking them in context to be sure). These checks
+were useful in detecting blatant errors and increasing uniformity of
+word-level encoding across meetings and transcribers.
+
+In a number of cases, there were words or phrases which were 
+acoustically strong but remained incomprehensible even to 
+senior researchers.  In these cases, the actual speakers were asked 
+to listen and demystify them.  
+
+Once checking was completed by a senior researcher, the transcripts
+were checked in a final way:  by being made available for correction
+and approval by the participants themselves.  Although very few errors 
+were detected in this way, those which were were gratefully accepted 
+and fixed.
+
+
+REFERENCES
+
+Barras, C., Geoffrois, E., Wu, Z. and Liberman, M. (2000).
+    Transcriber: development and use of a tool for assisting speech
+    corpora production. Speech Communication special issue on Speech
+    Annotation and Corpus Tools, Vol 33, No 1-2.
+
+Edwards, Jane A. (1993) Principles and contrasting systems of transcription.
+    In J.A. Edwards and M.D. Lampert (eds). Talking data: Transcription and 
+    coding in discourse research. Lawrence Erlbaum Associates, Inc.: 
+    Hillsdale, NJ. (pp. 3-31).
+
+Edwards, Jane A. (1995) Principles and alternative systems in the
+    transcription, coding and mark-up of spoken discourse.
+    In G. Leech, G. Myers, and J. Thomas (eds). Spoken English
+    on Computer:  Transcription, Mark-up, and Application.
+    NY: Longman Publishing.
+
+Edwards, Jane A. (2002) "The Transcription of Discourse." In
+    D. Tannen, D. Schiffrin, and H. Hamilton (eds). The Handbook of
+    Discourse Analysis. NY: Blackwell (pp. 321-348).
+
+Pfau, T., Ellis, D.P.W. and Stolcke, A. (2001), 
+   Multispeaker Speech Activity Detection for the ICSI Meeting Recorder.
+   Proc. IEEE Automatic Speech Recognition and Understanding Workshop,
+   Madonna di Campiglio, Italy.
+
+  ----------------------------------------------------------------
+
+ADDENDUM: Conversion to MRT format
+
+Many of the categories of mark-up described above (VOC, NVC, QUAL, PRN, ...) 
+were reformatted for the MRT files.  Here we provide an itemization of 
+several such classes and the mappings applied to them.
+
+... original ................ becomes ................. MRT form ...
+
+uncertainty:    (words)               <Uncertain> words </Uncertain>
+uncertainty:    (nx)                  <Uncertain NumSyllables="n"> @@ </Uncertain>
+uncertainty:    (??)                  <Uncertain> @@ </Uncertain>
+
+pronunciation:  'word {PRN descriptn} <Pronounce Pronunciation="descriptn"> word </Pronounce>
+                                      where the description is optional
+
+non-English:    'words {LANG comment} <Foreign Language="FL" Description="comment"> words </Foreign>
+                                      where FL = de (German), es (Spanish), 
+                                        fr (French), it (Italian), la (Latin)
+                                      and the comment is optional
+
+emphasis:       *word                 <Emphasis> word </Emphasis>
+
+vocal sound:    {VOC sound}           <VocalSound Description="sound"/>
+nonvocal sound: {NVC sound}           <NonVocalSound Description="sound"/>
+
+short pause:    ..                    <Pause/>
+long silence (between turns)          not explicitly encoded; rather inferred from absence of time bins containing non-silence events
+
+comment:        {QUAL comment}        <Comment Description="comment"/>
+
+Digits task:    {DGTS}                <Comment Description="Digits"/>
+                                      also the <Segment> tag includes the 
+                                        attribute: DigitTask="true"
+
+
+note: This conversion occasionally resulted in unusual formatting.  
+For example, '*' was sometimes used to denote word-internal emphasis, 
+such as "P_L_*P", which mapped to "P_L_<Emphasis> P </Emphasis>", 
+so caution should be exercised when suppresssing < ... > markings.
+
+========================================================================

@@ -1,0 +1,450 @@
+========
+OVERVIEW
+========
+
+The ICSI Meeting Corpus is a collection of 75 meetings -- including
+simultaneous multi-channel audio recordings, word-level orthographic
+transcriptions, and supporting documentation -- collected at the
+International Computer Science Institute in Berkeley during the
+years 2000-2002. The meetings included are "natural" meetings in
+the sense that they would have occurred anyway: they are generally
+regular weekly meetings of various ICSI working teams, including the
+team working on the ICSI Meeting Project. In recording meetings of
+this type, we hoped to capture meeting dynamics and speaking styles
+that are as natural as possible given that speakers are wearing
+close-talking microphones and are fully cognizant of the recording
+process. The meetings included here range in length from 17 to 103
+minutes, but generally run just under an hour each. The collection
+includes a total of approximately 72 hours of Meeting Room speech.
+
+This document contains an overview of the Meeting Project, including
+the collection, transcription, and data preparation process. Further
+details are provided in the other documentation in this directory.
+
+As part of this release, we provide:
+
+  * audio -- for each of the 75 meetings, a directory containing
+    simultaneous recordings of up to 16 channels: close-talking
+    channels for each participant, plus 6 table-top mics.
+
+  * transcripts -- for each meeting, a word-level orthographic
+    transcription, plus annotations of speech and nonspeech events and
+    general meeting information, available in the form of an "MRT"
+    file, an XML format designed for this corpus.
+
+  * doc -- in addition to this overview, files describing the
+    transcription conventions, the MRT specification, a table of
+    enrolled speakers, and other useful information.
+
+
+====================
+The Recording Set-up
+====================
+
+The meetings were simultaneously recorded using close-talking
+microphones for each speaker (generally head-mounted, but early
+meetings contain some lapel mics), as well as six table-top
+microphones: 4 high-quality omnidirectional PZM microphones arrayed
+down the center of the conference table, and 2 inexpensive microphone
+elements mounted on a mock PDA. See the "naming.txt" or "naming.html"
+and "seatingchart.txt" files in the doc directory for further details.
+
+The data were collected at a 48 kHZ sample-rate, downsampled on the
+fly to 16 kHz. Audio files for each meeting are provided as separate
+time-synchronous recordings for each channel, encoded as 16-bit linear
+(big-endian) wavefiles, shorten-compressed in NIST SPHERE format.
+(Consult the "Known Problems, Useful Facts" section below for an
+important note on the synchronicity of the recordings.)
+
+All meetings were recorded in the same (roughly, 13 x 25 foot)
+instrumented meeting room. The room contains a central conference
+table almost completely filling the room, and can seat up to about 15
+people (though we were only equipped to record up to 10). Although
+we did not introduce the convention until part way through our
+collection process, later meetings identify the seat number of each
+participant in order to support speaker localization research and
+provide adjacency information. A diagram of the set-up may be found in
+the "seatingchart.txt" document.
+
+The meeting room contains whiteboards along three walls and is
+equipped with projection equipment; people writing on whiteboards or
+projecting slides can occasionally be heard during these recordings.
+However, no video is available to supplement the audio recordings.
+The low-level hum of the meeting room lights and fan is also audible,
+particularly on the far-field mics. The nearby elevators and hallway
+conversation are also occasionally heard.
+
+============================
+Meeting Names, Meeting Types
+============================
+
+The meetings contained in the corpus are for the most part regular
+weekly meetings of ICSI working teams. Consequently the same (slowly
+changing) mix of participants and technical content persist through
+meetings of each general type. The 75 meetings included here are
+composed of the following types:
+
+  count  code   type
+
+    29    Bmr   Meeting Recorder project
+    23    Bro   Robustness
+    15    Bed   Even Deeper Understanding
+     3    Bns   Network Services & Applications
+     2    Btr   Transcriber team
+     1    Bdb   Database discussion
+     1    Bsr   SRI collaboration
+     1    Buw   UW collaboration
+
+Meeting Recorder meetings are concerned mostly with this project,
+but include some discussion of more general speech research. The
+Robustness team -- with membership somewhat overlapping the MR team
+-- focuses on signal processing techniques to compensate for noise,
+reverberation and other environmental issues in speech recognition.
+The Even Deeper Understanding team is a part of ICSI's AI group
+concerned with issues in natural language understanding and neural
+theories of language. The Network Services team studies internet
+architectures, standards, and related networking issues. The two Btr
+meetings, the last meetings recorded in the corpus, were discussions
+among several of the transcribers on our Meeting Transcription team,
+reflecting on their experience. The three singleton types were
+one-time meetings of members of the Meeting Recorder group to discuss
+database design issues associated with the corpus and to meet with
+visiting collaborators from other sites. (The "B" that begins each
+code is an historical artifact, signifying the meeting was recorded
+in Berkeley: we initially hoped to include meetings recorded at other
+sites.)
+
+All meetings are identified by a 6-character name, the first 3
+characters giving the meeting type (as above) and the last three an
+identifying number. Note that numbers may not be strictly consecutive:
+We have held back some recordings from this release due to lack of
+transcription, to audio or content problems, or in order to support
+future research and evaluation.
+
+
+====================
+Meeting Participants
+====================
+
+Meetings involved anywhere from 3 to 10 participants, averaging 6.
+There are a total of 53 unique speakers in the corpus. Each speaker
+was asked to complete a speaker questionnaire of basic demographic
+information (including sex, age, regional dialect, education level,
+etc.). This information -- with the exception of the speaker's name
+and contact information -- is tabulated in the accompanying XML
+document "icsi1.spk". Most fields were optional (we valued truth and
+ease of enrollment over completeness) so some information on some
+participants may be missing.
+
+The corpus contains a significant proportion of non-native
+English speakers (we are, after all, the INTERNATIONAL Computer
+Science Institute!), varying in fluency from nearly-native to
+challenging-to-transcribe. For non-native speakers, the speaker table
+includes information about native tongue and, to provide insight into
+degree of fluency, time spent in an English-speaking country.
+
+Speakers are identified in the corpus via a 5-character code: The
+first character [m,f] gives sex of the speaker, the second [e,n]
+tells whether the speaker is a (self-described) native speaker of
+English or non-native, and the last three provide a unique speaker
+number. Note that speaker numbers, like meeting numbers, may not
+be strictly consecutive. Also note that the speaker tag does not
+distinguish between native speakers of American English and of other
+varieties of English, though the speaker table provides information
+about this.
+
+While speakers are identified exclusively by ID throughout the corpus
+documentation, we made no effort to eliminate names that occurred
+naturally in the meeting discussions (although all speakers were
+given the opportunity of suppressing any speech they wished removed,
+including identifiers: see the "Participant Approval" note below).
+
+In addition to the 53 registered talkers, there is (very occasional)
+speech heard from other voices -- including a computer-synthesized
+one -- during some meetings. These are generally very fleeting
+occurrences, such as someone stopping at the meeting room door to
+deliver a message to a participant. Such voices have been assigned
+ID codes with numbers 901-908 to separate them from enrolled talkers
+but permit standardized processing of all voices. (Warning: the
+computer-synthesized voice has 5-character code starting with 'x',
+rather than 'f' or 'm'.)
+
+
+===============
+The Digits Task
+===============
+
+In addition to recording the meetings themselves, we also asked
+meeting participants to read digit strings, similar to those found in
+TIDIGITS, at the start or end of the meeting. This small-vocabulary
+read-speech component of the recordings -- using the same meeting
+room, speakers, and microphones -- provides a valuable supplement
+to the natural conversational data, allowing a factorization of the
+speech challenges offered by the corpus. Researchers can tackle the
+hard problems of recognizing conversational multi-party speech using
+the close-talking high-quality channels, while exploring problems in
+far-field acoustics using a simpler speech task.
+
+For all but a dozen of the meetings included here, at least some
+of the participants read digit strings; for the great majority of
+meetings, all participants did. The digit readings are included
+as part of the wavefiles for the meeting as a whole and are fully
+transcribed as part of the associated transcripts, but Digits
+Task speaking turns are tagged with a "Digits" comment for easy
+identification in the transcripts.
+
+While participants generally took turns reading through their digit
+prompt sheets, for several meetings all participants read digits
+simultaneously. These should provide interesting material for work on
+speech separation and robustness to background speech. For one meeting
+(Bmr023), all participants received the same digit form and read the
+digits in unison (more or less). However, having digit strings read by
+each participant in turn is the default behavior for these meetings,
+and deviations from this (no digits, simultaneous digits, ...) are
+noted in the Notes field in the headers of the meeting transcripts.
+
+One final note on the Digits Task: Researchers at ICSI have published
+several results on digit recognition for the ICSI Meeting task,
+generally referred to as "Meeting Recorder Digits". However, these
+were based on an early subset of the meetings provided in this corpus
+and thus refer to a smaller collection of meetings and to a different
+segmentation of the digit sequences into turns. Hence, results will
+not be directly comparable to those obtained on the labeled "Digits"
+sequences provided here.
+
+
+============================
+Transcriptions and MRT Files
+============================
+
+Complete word-level orthographic transcriptions are provided for
+all meetings. These transcriptions were generated by a team of
+transcribers listening to the close-talking channels, to facilitate
+careful transcription in cases of speaker overlap and include
+soft-spoken backchannels or whispered self-remarks not discernible on
+the far-field mics.
+
+In addition to the spoken words, the transcriptions include
+annotations of non-lexical vocalizations (laughs, coughs, ...) and
+other noises (coffee mug clinks, door slams, ...), and notations
+regarding mangled pronunciations, use of non-English words,
+unintelligible speech, and other qualifications and comments.
+
+The transcripts are provided in an XML format developed for this
+corpus, which we call MRT files (for Meeting Room Transcript). The
+format is detailed in the annotated DTD "Meeting1-annotated.dtd"
+and "Meeting-annotated.dtd.html" provided in the doc directory.
+The transcription team generated transcripts with the help of
+the channeltrans utility, a variant of the publicly available
+Transcriber tool (see http://www.etca.fr/CTA/gip/Projets/Transcriber/)
+modified at ICSI to support multi-channel recordings. (More
+information about channeltrans is available on our website
+http://www.icsi.berkeley.edu/Speech/mr/channeltrans.html.)
+Our transcription guidelines are provided in the document
+"trans_guide.txt" in the doc directory; transcripts were generated
+in this form and then automatically mapped to the MRT format after
+completion.
+
+The MRT file also includes a header ("Preamble") containing useful
+information about each meeting, including a list of participants and
+their associated microphone, channel, etc., the time and date of
+recording, and a free-form Notes field which may include information
+about meeting anomalies (microphone problems, late entrances or
+early exits by speakers, variations on the Digits Task, ...) and
+particular points of interest such as comments on discourse structure
+or linguistic observations. For convenience, preambles for all 75
+meetings are also collected in the single file "preambles.mrt" in the
+transcripts directory.
+
+For a unique perspective on the transcription process, the two Btr
+meetings provide commentary on the effort by the team of students who
+did the work and make interesting (and entertaining) listening.
+
+
+================================
+Participant Approval & Censoring
+================================
+
+All participants signed our Meeting Corpus consent form (approved by
+UC/Berkeley's Committee for Protection of Human Subjects; a copy is
+on file with the LDC) and were fully aware of our intent to publish
+these recordings. Speakers were given the opportunity to review the
+meetings in which they participated in order to approve (or request
+modifications to or deletions in) the transcriptions generated.
+While this resulted in occasional improvements to the transcripts
+-- especially on technical terminology, nonstandard word usage, and
+heavily accented speech -- very few requests were made to have content
+expunged. We did not censor any data except as explicitly requested
+by the participants, including identifying names, etc. that may have
+occurred in the speech stream.
+
+Segments of meetings that participants wished deleted were replaced by
+a pure tone on all channels (a necessary step due to potential leakage
+across channels). The content was removed from the transcripts and
+replaced by a segment containing only the comment "Censored", again
+on all (transcribed) channels. In total, only five and a half minutes
+of speech were expunged, over half from a single meeting. Only nine
+meetings contain any censored speech.
+
+(This process -- which we refer to as "bleeping" -- became something
+of an in-house joke: Several meetings include speakers jokingly saying
+"bleep!" as a commentary on potentially controversial content.)
+
+A list of all censored segments is provided in the "all.blp" document
+in this directory. Each meeting in which a censored segment appears
+also contains a .blp file with the same information.
+
+
+============================
+Known Problems, Useful Facts
+============================
+
+Corpus users should be warned of several known problems with this
+material:
+
+Time offsets -- Despite suppliers' claims that the recording
+software would capture all channels time-synchronously, we have
+detected small but systematic offsets between channels. These delays
+are consistent with a fixed skew introduced when the individual
+channels are initialized at the start of a recording session, and
+should remain fixed throughout the session. However, they are
+likely to vary slightly between different sessions. They appear
+quantized at multiples of 2.64 ms (42.667 samples at 16 kHz). More
+information on this problem can be found on our website; consult
+http://www.icsi.berkeley.edu/Speech/mr/misc.html. The delays are small
+enough to be insignificant for most uses of this material, but those
+pursuing, for example, speaker localization work should be aware of
+this issue.
+
+Drop-outs and voltage spikes -- A rarer problem is the occasional
+appearance of voltage spikes or of complete recording drop-out (no
+signal) for parts of some recordings. While we have excluded meetings
+from the corpus where these problems were severe, we do include
+instances with isolated anomalies. These were generally caused by
+faulty electrical connections and so are more common in early meetings
+before we changed most microphones to wireless connections. Occasional
+notes on these issues may be found in transcript headers.
+
+Low-frequency noise on "mock-PDA" channels -- Two of our table-top
+channels are captured through cheap electret microphone elements
+mounted on each side of a "mock PDA" (actually a PDA-size block
+of wood). They provide an interesting contrast to the much more
+expensive PZM signals. In general, the "PDA" mics perform quite
+well (especially after appropriate noise treatment), but users
+should be aware that these channels have an unusually large amount
+of very low-frequency noise. More information about this, including
+suggestions on how to filter out this noise, is available at
+http://www.icsi.berkeley.edu/Speech/mr/misc.html.
+
+Unmiked speakers, non-standard microphone configurations -- In
+general, we tried to ensure that all meeting participants wore
+close-talking microphones, but there are occasional exceptions to
+this rule, noted in the headers of individual meetings. We excluded
+meetings from the corpus where an unmiked speaker was a principal
+talker. but several meetings do contain significant amounts of
+non-close-miked speech (due to microphone failures, unmiked observers
+offering comments, etc.). Users should also be aware of other
+"non-standard" microphone configurations: some participants wore their
+headset microphones around their necks rather than over the crown of
+their head, resulting in more variable amplitude from head-turning,
+etc.; occasionally a user removed his microphone (e.g. to sip coffee
+or answer the telephone); and in some isolated cases a participant
+tried out another participant's headset. In a few early meetings,
+participants wore their wireless headsets during brief excursions out
+of the meeting room (e.g. to get a glass of water from the local water
+cooler). Such anomalies are generally noted in the Notes field of
+the transcript headers for individual meetings, and corpus users are
+encouraged to review these notes for further information.
+
+
+=======================
+For More Information...
+=======================
+
+The information above provides most of the "basics" for users of the
+ICSI Meeting Corpus, but more detailed information is available in a
+number of other forms:
+
+Other documentation in this directory:
+  * trans_guide.txt -- description of the transcription process and
+      transcript conventions
+  * Meeting1-annotated.dtd[.html] -- text [and html] file specifying the
+      MRT format, including annotations and examples of use
+  * icsi1.spk -- a compilation of speaker information (in XML format)
+  * naming[.txt/.html] -- text and html files describing the naming conventions
+      for meetings, participant IDs, microphone types, and transmission types
+  * seatingchart.txt -- a simple diagram of the meeting table with rough
+      indication of seat and table-top microphone placement
+  * all.blp -- a listing of all intervals where speech is censored
+
+Notes on individual meetings are provided in MRT headers.
+
+More information is available on the Meeting Recorder website
+(http://www.icsi.berkeley.edu/Speech/mr/), including:
+  * useful tools
+  * miscellaneous notes on the recording set-up and data collection process
+  * pointers to related work
+
+Also consult our many publications on this corpus, especially:
+  * a corpus overview:
+    A. Janin et al., "The ICSI Meeting Corpus", Proc. ICASSP-2003, Hong Kong,
+       April 2003.
+  * two overviews of ICSI research efforts:
+    Morgan et al., "The Meeting Project at ICSI", Proc. HLT-2001, San Diego,
+       March 2001.
+    Morgan et al., "Meetings about meetings: Research at ICSI on speech
+       in multiparty conversations", Proc. ICASSP-2003, Hong Kong, April 2003.
+Additional publications of interest are listed on the Meeting Recorder
+website.
+
+Finally, the corpus itself is highly self-referential, including a
+great deal of meta-comment in a number of meetings. In particular, see
+the meetings of the Meeting Recorder project team (Bmr) and of the
+Meeting Transcription team (Btr).
+
+
+We welcome your comments! Please send us comments, corrections, and
+other feedback to mrcontact@icsi.berkeley.edu
+
+
+================
+Acknowledgments
+================
+
+The collection and preparation of this corpus was made possible in
+large part through funding from DARPA, both through the Communicator
+project and through a ROAR "seedling", the Swiss IM2 project (National
+Centre of Competence in Research, sponsored by the Swiss National
+Science Foundation), and a supplementary award from IBM.
+
+We would like to thank our many colleagues and collaborators at other
+sites, especially Mari Ostendorf, Jeff Bilmes, and Katrin Kirchhoff at
+the University of Washington, and Brian Kingsbury and Michael Picheny
+at IBM. And special thanks to "ICSI alums" James Beck (for his role
+in the original instrumentation of the meeting room) and Steve Renals
+(for his help in formulating the MRT specification).
+
+For their enormous efforts in deciphering and transcribing countless
+hours of Meeting Room speech, we thank our Meeting Transcription team:
+Jennifer Alexander, Helen Boucher, Robert Bowen, Jennifer Brabec,
+Mercedes Carter, Hannah Carvey, Leah Hitchcock, Joel Hobson, Adam
+Isenberg, Julie Newcomb, Cindy Ota, Karen Pezzetti, Marisa Sizemore,
+and Stephanie Thompson.
+
+Finally, heartfelt thanks to all the meeting participants for allowing
+us to record their meetings! We are truly grateful that their
+generosity allows us to make this rich resource available to the
+speech and language community.
+
+
+   The ICSI Meeting Corpus team:
+
+   Adam Janin, Jane Edwards, Dan Ellis (*), David Gelbart,
+   Nelson Morgan, Barbara Peskin, Thilo Pfau (+),
+   Elizabeth Shriberg (#), Andreas Stolcke (#), Chuck Wooters
+
+ ---------
+ (*) now at Department of Electrical Engineering, Columbia University
+ (+) now at Department of Veterinary Basic Sciences,
+       The Royal Veterinary College, University of London
+ (#) also at Speech Technology and Research Laboratory, SRI International

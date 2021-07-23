@@ -27,7 +27,9 @@
     <h3>Summary:</h3>
     <h5>{{summary}}</h5>
     <h3>Prediction:</h3>
-    <h5>{{prediction}}</h5>
+    <h5> {% for your_list_element in prediction %}
+      {{ your_list_element }}
+        {% endfor %}</h5>
     <p></p>
 
 

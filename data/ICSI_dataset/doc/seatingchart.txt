@@ -1,0 +1,40 @@
+
+Simple diagram of the seating arrangement in the ICSI meeting room.
+
+The ordering of seat numbers is as specified below, but their
+alignment with microphones may not always be as precise as indicated
+here. Also, the seat number only indicates where the participant
+started the meeting. Since most of the microphones are wireless, they
+were able to move around.
+
+
+
+   Door
+
+
+	  1         2            3           4
+     -----------------------------------------------------------------------
+     |                      |                       |                      |   S
+     |                      |                       |                      |   c
+     |                      |                       |                      |   r
+    9|   D1        D2       |   D3  PDA     D4      |                      |   e
+     |                      |                       |                      |   e
+     |                      |                       |                      |   n
+     |                      |                       |                      |
+     -----------------------------------------------------------------------
+	  8         7            6           5
+
+
+
+D1, D2, D3, D4  - Desktop PZM microphones
+PDA - The mockup PDA with two cheap microphones
+
+The following are the TYPICAL channel assignments, although a handful
+of meetings (including Bmr003, Btr001, Btr002) differed in assignment.
+
+D1 - chanE
+D2 - chanF
+D3 - chan6
+D4 - chan7
+PDA left - chanC
+PDA right - chanD

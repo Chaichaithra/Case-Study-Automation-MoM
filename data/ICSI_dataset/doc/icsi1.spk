@@ -1,0 +1,721 @@
+<!--
+
+All fields are self-reported by the participants. The web page the
+speakers used to provide this information may be seen at:
+
+http://www.icsi.berkeley.edu/Speech/mr/speakerform.html
+
+Under the <language> tag, the <variety> is the variety of English
+spoken (e.g. American, British). The <region> is e.g. Southern,
+Cockney. The <influence> is for freeform information on other language
+influencies (bilingual, dialects, etc).
+
+If the speaker is not a native English speaker, the <native> and
+<non-native> tags will be included.
+
+Under <native>, the <language> and <region> identifies the participant's
+native language.
+
+Under <nonnative>, the <time> indicates the time spent in an English
+speaking environment, and the <country> indicates which country this
+was. The idea was to provide at least some indication of proficiency.
+
+The <age> is optional, and indicates the user's age at the time the
+form was filled out.
+
+-->
+
+<speakers>
+
+<speaker sex="Male" formdate="2001-03-06" tag="me001">
+  <education> Grad </education>
+  <language name="English">		  
+     <variety> American </variety>
+     <region> Midwest </region>
+     <influences>
+     Russian
+     </influences>
+  </language>
+  <age> 23 </age>
+</speaker>
+
+<speaker sex="Female" formdate="2001-03-06" tag="fn002">
+  <education> PhD </education>
+  <language name="English">
+     <variety> Unspecified </variety>
+     <native>				
+       <language> Spanish  </language>
+       <region> Andalucia </region>
+     </native>
+     <nonnative>			
+       <time> 5 months </time>
+       <country> ?  </country>
+     </nonnative>
+  </language>
+  <age> 35 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-06" tag="me003">
+  <education> Grad </education>
+  <language name="English">
+     <variety> American </variety>
+     <region> mix southern + california </region>
+  </language>
+  <age> 22 </age>
+</speaker>
+
+<speaker sex="Female" formdate="2001-03-06" tag="fe004">
+  <education> Grad </education>
+  <language name="English">
+     <variety> American </variety>
+     <region> non-descript California </region>
+     <influences>
+     bilingual mandarin
+     </influences>
+  </language>
+  <age> 28 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-06" tag="mn005">
+  <education> PhD </education>
+  <language name="English">
+     <variety> British </variety>
+     <native>
+       <language> Spanish  </language>
+       <region> Madrid (center) </region>
+     </native>
+     <nonnative>
+       <time> 6 months </time>
+       <country> ?  </country>
+     </nonnative>
+  </language>
+  <age> 35 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-06" tag="me006">
+  <education> Grad </education>
+  <language name="English">
+     <variety> American </variety>
+     <influences>
+     Spoke mandarin for first part of life 0-5 yrs old
+     </influences>
+  </language>
+  <age> 25 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-06" tag="mn007">
+  <education> PhD </education>
+  <language name="English">
+     <variety> American </variety>
+     <native>
+       <language> French  </language>
+     </native>
+     <nonnative>
+       <time> 4 months </time>
+       <country> Belgium  </country>
+     </nonnative>
+  </language>
+  <age> 28 </age>
+</speaker>
+
+<speaker sex="Female" formdate="2001-03-06" tag="fe008">
+  <education> Postdoc </education>
+  <language name="English">
+     <variety> American </variety>
+     <influences>
+     German accent lessons - probably affected some aspect
+of my pronunciation simply by focusing on it, but I'm
+not sure whether or what.
+     </influences>
+  </language>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-06" tag="mn009">
+  <note>
+     Old contact     espeneri@cory.eecs.berkeley.edu
+  </note>
+  <education> Grad </education>
+  <language name="English">
+     <variety> Norwegian </variety>
+     <native>
+       <language> Norwegian  </language>
+     </native>
+     <nonnative>
+       <time> 6 months </time>
+     </nonnative>
+  </language>
+  <age> 23 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-06" tag="me010">
+  <education> Professor </education>
+  <language name="English">
+     <variety> American </variety>
+     <region> W. Pennsylvania </region>
+  </language>
+  <age> 62 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-06" tag="me011">
+  <education> Grad </education>
+  <language name="English">
+     <variety> American </variety>
+  </language>
+  <age> 35 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-06" tag="me012">
+  <education> Grad </education>
+  <language name="English">
+     <variety> Indian </variety>
+     <influences>
+     Indian/Canadian
+     </influences>
+  </language>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-06" tag="me013">
+  <education> Professor </education>
+  <language name="English">
+     <variety> American </variety>
+     <region> Western New York </region>
+  </language>
+  <age> 51 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-06" tag="mn014">
+  <education> PhD </education>
+  <language name="English">
+     <variety> German-English </variety>
+     <native>
+       <language> German  </language>
+       <region> Souther Germany, Bavaria </region>
+     </native>
+     <nonnative>
+       <time> 3 months </time>
+     </nonnative>
+  </language>
+  <age> 30 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-06" tag="mn015">
+  <education> Grad </education>
+  <language name="English">
+     <variety> Unspecified </variety>
+     <native>
+       <language> German  </language>
+     </native>
+  </language>
+  <age> 32 </age>
+</speaker>
+
+<speaker sex="Female" formdate="2001-03-06" tag="fe016">
+  <education> PhD </education>
+  <language name="English">
+     <variety> American </variety>
+     <region> Midwest </region>
+  </language>
+  <age> 35 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-06" tag="mn017">
+  <education> PhD </education>
+  <language name="English">
+     <variety> American </variety>
+     <native>
+       <language> German  </language>
+     </native>
+     <nonnative>
+       <time> 11 yrs </time>
+       <country> U.S.  </country>
+     </nonnative>
+  </language>
+  <age> 36 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-06" tag="me018">
+  <education> PhD </education>
+  <language name="English">
+     <variety> American </variety>
+     <region> Calif </region>
+  </language>
+  <age> 37 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-07" tag="mn021">
+  <education> PhD </education>
+  <language name="English">
+     <variety> non-native </variety>
+     <native>
+       <language> Spanish  </language>
+       <region> Valencia </region>
+     </native>
+     <nonnative>
+       <time> 6 months </time>
+       <country> USA  </country>
+     </nonnative>
+     <influences>
+     Catalan
+     </influences>
+  </language>
+  <age> 36 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-07" tag="me022">
+  <education> PhD </education>
+  <language name="English">
+     <variety> American </variety>
+  </language>
+  <age> 29 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-07" tag="me025">
+  <education> PhD </education>
+  <language name="English">
+     <variety> British </variety>
+     <region> London </region>
+     <influences>
+     5 years in California, 7 years in Boston before that.
+I'm mistaken for an American when I go back to the 
+UK (although not in the US!).
+     </influences>
+  </language>
+  <age> 35 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-07" tag="me026">
+  <education> Grad </education>
+  <language name="English">
+     <variety> American </variety>
+     <region> British Columbia </region>
+  </language>
+  <age> 23 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-07" tag="me028">
+  <education> Undergrad </education>
+  <language name="English">
+     <variety> American </variety>
+     <region> California, Central Valley (none) </region>
+     <influences>
+     Hung out too much with Brits.
+     </influences>
+  </language>
+  <age> 51 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-09" tag="mn030">
+  <education> PhD </education>
+  <language name="English">
+     <variety> American </variety>
+     <native>
+       <language> German  </language>
+     </native>
+     <nonnative>
+       <time> 8 months </time>
+       <country> USA  </country>
+     </nonnative>
+  </language>
+  <age> 34 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-09" tag="me032">
+  <education> Professor </education>
+  <language name="English">
+     <variety> American </variety>
+     <influences>
+     Mostly CA English, but perhaps with a bit of east coast (NY regional)influence.
+     </influences>
+  </language>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-11" tag="me034">
+  <education> PhD </education>
+  <language name="English">
+     <variety> American </variety>
+  </language>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-13" tag="mn035">
+  <education> Grad </education>
+  <language name="English">
+     <variety> British </variety>
+     <native>
+       <language> German  </language>
+       <region> North </region>
+     </native>
+     <nonnative>
+       <time> 1 3/4 year </time>
+       <country> UK, USA  </country>
+     </nonnative>
+  </language>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-15" tag="mn036">
+  <education> PhD </education>
+  <language name="English">
+     <variety> American </variety>
+     <region> Israeli </region>
+     <native>
+       <language> Hebrew  </language>
+     </native>
+     <nonnative>
+       <time> 25 years </time>
+       <country> Israel  </country>
+     </nonnative>
+  </language>
+  <age> 53 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-23" tag="mn038">
+  <education> PhD </education>
+  <language name="English">
+     <variety> American </variety>
+     <native>
+       <language> Spanish  </language>
+       <region> Latin America </region>
+     </native>
+     <nonnative>
+       <time> 11 years </time>
+       <country> USA  </country>
+     </nonnative>
+  </language>
+  <age> 47 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-03-26" tag="mn040">
+  <education> PhD </education>
+  <language name="English">
+     <variety> British </variety>
+     <native>
+       <language> Spanish  </language>
+       <region> Europe </region>
+     </native>
+     <nonnative>
+       <time> 6 months </time>
+       <country> USA  </country>
+     </nonnative>
+     <influences>
+     spanish, catalan
+     </influences>
+  </language>
+</speaker>
+
+<speaker sex="Female" formdate="2001-03-26" tag="fe041">
+  <education> Professor </education>
+  <language name="English">
+     <variety> American </variety>
+  </language>
+  <age> 42 </age>
+</speaker>
+
+<speaker sex="Female" formdate="2001-04-05" tag="fn043">
+  <education> Professor </education>
+  <language name="English">
+     <variety> British </variety>
+     <native>
+       <language> German  </language>
+     </native>
+     <nonnative>
+       <time> 1 yr / 3 yr </time>
+       <country> Scotland / USA  </country>
+     </nonnative>
+  </language>
+  <age> 31 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-04-05" tag="me045">
+  <education> Grad </education>
+  <language name="English">
+     <variety> American </variety>
+     <influences>
+     (German)
+     </influences>
+  </language>
+  <age> 25 </age>
+</speaker>
+
+<speaker sex="Female" formdate="2001-04-05" tag="fe046">
+  <education> Undergrad </education>
+  <language name="English">
+     <variety> American </variety>
+  </language>
+  <age> 24 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-05-04" tag="mn047">
+  <education> Grad </education>
+  <language name="English">
+     <variety> Unspecified </variety>
+     <native>
+       <language> German  </language>
+     </native>
+  </language>
+  <age> 30 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-05-04" tag="mn048">
+  <education> PhD </education>
+  <language name="English">
+     <variety> American </variety>
+     <native>
+       <language> German  </language>
+       <region> West </region>
+     </native>
+     <nonnative>
+       <time> 2.5 years </time>
+       <country> USA  </country>
+     </nonnative>
+  </language>
+  <age> 37 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-05-04" tag="mn049">
+  <education> Professor </education>
+  <language name="English">
+     <variety> Czeck </variety>
+     <native>
+       <language> Czeck  </language>
+     </native>
+     <nonnative>
+       <time> 8 years </time>
+       <country> USA  </country>
+     </nonnative>
+  </language>
+  <age> 55 </age>
+</speaker>
+
+<speaker sex="Female" formdate="2001-05-14" tag="fn050">
+  <education> Grad </education>
+  <language name="English">
+     <variety> American </variety>
+     <native>
+       <language> Chinese (cantonese)  </language>
+       <region> HK </region>
+     </native>
+     <nonnative>
+       <time> 6 </time>
+       <country> US  </country>
+     </nonnative>
+  </language>
+  <age> 20 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-05-24" tag="me051">
+  <education> Grad </education>
+  <language name="English">
+     <variety> American </variety>
+     <region> Washington D.C. </region>
+  </language>
+  <age> 23 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-05-24" tag="mn052">
+  <education> PhD </education>
+  <language name="English">
+     <variety> Indian </variety>
+     <native>
+       <language> Malayalam  </language>
+       <region> Kerala </region>
+     </native>
+     <nonnative>
+       <time> 2 years </time>
+       <country> Tamil, Hindi  </country>
+     </nonnative>
+  </language>
+</speaker>
+
+<speaker sex="Male" formdate="2001-06-25" tag="me055">
+  <education> PhD </education>
+  <language name="English">
+     <variety> British </variety>
+     <region> Generic Southern British </region>
+  </language>
+  <age> 33 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-06-26" tag="me056">
+  <education> Grad </education>
+  <language name="English">
+     <variety> American </variety>
+     <region> Midwest </region>
+  </language>
+  <age> 35 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-07-10" tag="mn057">
+  <education> PhD </education>
+  <language name="English">
+     <variety> American </variety>
+     <native>
+       <language> Turkish  </language>
+       <region> Central </region>
+     </native>
+     <nonnative>
+       <time> 11 years </time>
+       <country> USA  </country>
+     </nonnative>
+  </language>
+  <age> 33 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-07-18" tag="mn058">
+  <education> Professor </education>
+  <language name="English">
+     <variety> German </variety>
+     <native>
+       <language> German  </language>
+     </native>
+     <nonnative>
+       <time> ~9 months </time>
+       <country> US  </country>
+     </nonnative>
+  </language>
+  <age> 43 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2001-07-30" tag="mn059">
+  <education> Grad </education>
+  <language name="English">
+     <variety> American </variety>
+     <native> 
+       <language> German  </language>
+     </native>
+     <nonnative>
+       <time> 4 yrs </time>
+       <country> USA  </country>
+     </nonnative>
+  </language>
+  <age> 29 </age>
+</speaker>
+
+<speaker sex="Female" formdate="2002-04-11" tag="fe066">
+  <education> Undergrad </education>
+  <language name="English">
+     <variety> American </variety>
+     <region> N.E. accent (CT) </region>
+  </language>
+  <age> 22 </age>
+</speaker>
+
+<speaker sex="Female" formdate="2002-04-11" tag="fe067">
+  <education> B.A. </education>
+  <language name="English">
+     <variety> American </variety>
+     <region> California </region>
+  </language>
+  <age> 22 </age>
+</speaker>
+
+<speaker sex="Female" formdate="2002-04-11" tag="fe068">
+  <education> Grad </education>
+  <language name="English">
+     <variety> American </variety>
+     <region> Chicago </region>
+  </language>
+  <age> 29 </age>
+</speaker>
+
+<speaker sex="Female" formdate="2002-04-11" tag="fe069">
+  <education> Finished BA in 2001 </education>
+  <language name="English">
+     <variety> American </variety>
+     <region> Northern California </region>
+  </language>
+  <age> 22 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2002-04-11" tag="me070">
+  <education> Undergrad </education>
+  <language name="English">
+     <variety> American </variety>
+     <region> Californian </region>
+  </language>
+  <age> 23 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2002-09-25" tag="mn081">
+  <education> Grad </education>
+  <language name="English">
+     <variety> American </variety>
+     <native>
+       <language> dutch  </language>
+     </native>
+     <nonnative>
+       <time> 3 years </time>
+       <country> US  </country>
+     </nonnative>
+     <influences>
+     german french
+     </influences>
+  </language>
+  <age> 32 </age>
+</speaker>
+
+<speaker sex="Male" formdate="2002-09-26" tag="mn082">
+  <education> Grad </education>
+  <language name="English">
+     <variety> American </variety>
+     <native>
+       <language> German  </language>
+       <region> Bavaria </region>
+     </native>
+     <nonnative>
+       <time> 3 years </time>
+       <country> UK, USA, Ireland  </country>
+     </nonnative>
+     <influences>
+     Influences could exist from Chinese and French
+     </influences>
+  </language>
+  <age> 44 </age>
+</speaker>
+
+<speaker sex="Female" formdate="2002-10-16" tag="fn083">
+  <education> PhD </education>
+  <language name="English">  
+     <variety> Unspecified </variety>
+     <native>  
+       <language> German  </language>
+     </native>
+  </language>
+</speaker>
+
+<speaker sex="female" tag="fe901">
+  <language name="English"/>
+</speaker>
+
+<speaker tag="xe902">
+  <language name="English"/>
+</speaker>
+
+<speaker sex="female" tag="fe903">
+  <language name="English"/>
+</speaker>
+
+<speaker sex="male" tag="me904">
+  <language name="English"/>
+</speaker>
+
+<speaker sex="female" tag="fe905">
+  <language name="English"/>
+</speaker>
+
+<speaker sex="male" tag="mn906">
+  <language name="English">
+     <variety> Unspecified </variety>
+     <native>  
+       <language> German  </language>
+     </native>
+  </language>
+</speaker>
+
+<speaker sex="male" tag="me907">
+  <language name="English"/>
+</speaker>
+
+<speaker sex="male" tag="me908">
+  <language name="English"/>
+</speaker>
+
+</speakers>

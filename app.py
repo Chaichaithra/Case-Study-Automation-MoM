@@ -4,7 +4,6 @@ import gcp
 import summary
 import prac
 import prediction_pipeline
-#import datab
 
 app = Flask(__name__)
 
@@ -28,10 +27,8 @@ def getAudio():
     abssummary = summary.absSummary()
     text = gcp.getOriginalText()
     prediction = prediction_pipeline.get_predicted_text()
-    
-    #datab.data()  
-
-    return render_template('summary.html',original_text = text,topic = topic, summary = abssummary,prediction = prediction )
+    return render_template('summary.html',original_text = text,topic = topic, summary = abssummary, prediction=prediction)
+   
 
 if __name__ == '__main__':
     app.run(debug= True)
